@@ -81,6 +81,14 @@ def audio_open(path):
     except DecodeError:
         pass
 
+    # MAD.
+    if _mad_available():
+        from . import maddec
+        try:
+            return maddec.MadAudioFile(path)
+        except DecodeError:
+            pass
+    
     # Core Audio.
     if _ca_available():
         from . import macca
@@ -94,14 +102,6 @@ def audio_open(path):
         from . import gstdec
         try:
             return gstdec.GstAudioFile(path)
-        except DecodeError:
-            pass
-
-    # MAD.
-    if _mad_available():
-        from . import maddec
-        try:
-            return maddec.MadAudioFile(path)
         except DecodeError:
             pass
 
