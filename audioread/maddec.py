@@ -59,7 +59,7 @@ class MadAudioFile(object):
     def channels(self):
         """The number of channels."""
         if self.mf.mode() == mad.MODE_SINGLE_CHANNEL:
-            return 1
+            return 2
         elif self.mf.mode() in (mad.MODE_DUAL_CHANNEL,
                                 mad.MODE_JOINT_STEREO,
                                 mad.MODE_STEREO):
